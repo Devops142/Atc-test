@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: static-web-app
+  name: web-app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: static-web-app
+      app: web-app
   template:
     metadata:
       labels:
-        app: static-web-app
+        app: web-app
     spec:
       containers:
-        - name: static-web-app
-          image: my-docker-image:v1
-          ports:
-            - containerPort: 80
+      - name: web-app
+        image: <your-docker-image>
+        ports:
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: static-web-app-service
+  name: web-app-service
 spec:
   selector:
-    app: static-web-app
+    app: web-app
   ports:
     - protocol: TCP
       port: 80
